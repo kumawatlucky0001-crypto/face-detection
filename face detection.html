@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>FaceMatch — Create your account</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #6d7688;
+      --line: #e3e7ef;
+      --surface: #fff;
+      --background: #f5f7fb;
+      --accent: #6758e8;
+      --accent-dark: #5143ce;
+      --success: #16876a;
+      --danger: #b83e51;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 12% 5%, rgb(103 88 232 / 10%), transparent 28rem),
+        radial-gradient(ellipse at 95% 70%, rgb(56 189 165 / 9%), transparent 25rem),
+        var(--background);
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 24px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      font-size: 1.12rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #7669f3, #5143ce);
+      color: white;
+      box-shadow: 0 7px 18px rgb(103 88 232 / 25%);
+    }
+
+    .topbar-note { color: var(--muted); font-size: .9rem; }
+    .topbar-note a { color: var(--accent-dark); font-weight: 700; text-decoration: none; }
+    .topbar-note strong { color: var(--ink); }
+    .auth-link { padding: 0; border: 0; background: none; color: var(--accent-dark); font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
+    .screen[hidden] { display: none; }
+
+    main {
+      width: min(1000px, calc(100% - 40px));
+      margin: 28px auto 56px;
+    }
+
+    .intro { max-width: 650px; margin: 0 auto 28px; text-align: center; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 12px;
+      color: var(--accent-dark);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #7b6df0;
+      content: "";
+    }
+
+    h1 { margin: 0; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -.055em; line-height: 1.1; }
+    .intro p { margin: 13px 0 0; color: var(--muted); font-size: 1.03rem; line-height: 1.65; }
+
+    .card {
+      overflow: hidden;
+      border: 1px solid rgb(226 230 239 / 90%);
+      border-radius: 20px;
+      background: rgb(255 255 255 / 94%);
+      box-shadow: 0 22px 65px rgb(34 43 76 / 9%);
+    }
+
+    .card-heading {
+      padding: 24px 30px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .card-heading h2 { margin: 0; font-size: 1.15rem; letter-spacing: -.02em; }
+    .card-heading p { margin: 5px 0 0; color: var(--muted); font-size: .9rem; }
+    .form-body { padding: 28px 30px 30px; }
+    .section-title { margin: 0 0 16px; font-size: .98rem; }
+
+    .account-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 17px;
+    }
+
+    .field { display: flex; min-width: 0; flex-direction: column; gap: 7px; }
+    .login-field-stack { display: grid; gap: 17px; }
+    .field label { font-size: .87rem; font-weight: 700; }
+    .field input {
+      width: 100%;
+      min-height: 47px;
+      padding: 11px 13px;
+      border: 1px solid #dce1eb;
+      border-radius: 10px;
+      outline: none;
+      background: #fff;
+      color: var(--ink);
+      transition: border-color .16s ease, box-shadow .16s ease;
+    }
+
+    .field input::placeholder { color: #a1a8b6; }
+    .field input:focus, .upload-card:focus-within {
+      border-color: #887cf0;
+      box-shadow: 0 0 0 4px rgb(103 88 232 / 11%);
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 28px 0 23px;
+      color: var(--muted);
+      font-size: .79rem;
+      font-weight: 750;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .divider::before, .divider::after { height: 1px; flex: 1; background: var(--line); content: ""; }
+    .photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .upload-card {
+      position: relative;
+      display: flex;
+      min-height: 245px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 20px;
+      border: 1.5px dashed #cfd4e2;
+      border-radius: 15px;
+      outline: none;
+      background: #fafbfe;
+      text-align: center;
+      transition: border-color .16s ease, background .16s ease, box-shadow .16s ease;
+    }
+
+    .upload-card:hover { border-color: #9d94ec; background: #f8f7ff; }
+    .upload-card.has-image { border-style: solid; border-color: #d7d2fb; background: #f6f5ff; }
+    .upload-card input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      clip-path: inset(50%);
+    }
+
+    .upload-icon {
+      display: grid;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      margin-bottom: 12px;
+      border-radius: 14px;
+      background: #efedff;
+      color: var(--accent-dark);
+      font-size: 1.4rem;
+    }
+
+    .upload-title { font-size: .94rem; font-weight: 750; }
+    .upload-hint { margin-top: 5px; color: var(--muted); font-size: .8rem; }
+    .preview {
+      display: none;
+      width: 100%;
+      height: 150px;
+      margin-bottom: 13px;
+      border-radius: 10px;
+      object-fit: cover;
+      background: #e9eaf0;
+    }
+
+    .upload-card.has-image .preview { display: block; }
+    .upload-card.has-image .upload-icon { display: none; }
+    .upload-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 14px; }
+    .upload-actions .btn { min-height: 38px; padding: 7px 12px; font-size: .82rem; }
+    .camera-dialog {
+      width: min(540px, calc(100% - 28px));
+      max-height: min(92vh, 780px);
+      padding: 0;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: white;
+      color: var(--ink);
+      box-shadow: 0 24px 80px rgb(21 28 53 / 28%);
+    }
+    .camera-dialog::backdrop { background: rgb(17 24 39 / 58%); backdrop-filter: blur(3px); }
+    .camera-content { padding: 22px; }
+    .camera-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; }
+    .camera-heading h2 { margin: 0; font-size: 1.15rem; }
+    .camera-heading p { margin: 5px 0 0; color: var(--muted); font-size: .86rem; }
+    .camera-close { min-height: 36px; padding: 4px 11px; border-color: var(--line); background: white; color: var(--ink); }
+    .camera-video-wrap { position: relative; margin-top: 18px; overflow: hidden; border-radius: 13px; background: #171923; }
+    .camera-video { display: block; width: 100%; max-height: 55vh; aspect-ratio: 4 / 3; object-fit: cover; transform: scaleX(-1); }
+    .camera-guide {
+      position: absolute;
+      inset: 10% 23%;
+      border: 2px solid rgb(255 255 255 / 72%);
+      border-radius: 50% 50% 44% 44%;
+      box-shadow: 0 0 0 999px rgb(0 0 0 / 12%);
+      pointer-events: none;
+    }
+    .camera-prompt { margin: 14px 0 0; text-align: center; font-weight: 750; }
+    .camera-progress { margin: 5px 0 0; color: var(--muted); font-size: .83rem; text-align: center; }
+    .camera-actions { display: flex; justify-content: center; gap: 9px; margin-top: 16px; }
+    .camera-actions .btn { min-height: 42px; }
+    .camera-status { min-height: 1.4em; margin: 11px 0 0; color: var(--danger); font-size: .84rem; text-align: center; }
+    .file-name {
+      display: block;
+      max-width: 100%;
+      overflow: hidden;
+      color: var(--muted);
+      font-size: .77rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .privacy-note {
+      display: flex;
+      gap: 10px;
+      margin-top: 17px;
+      padding: 12px 14px;
+      border: 1px solid #e1e8f5;
+      border-radius: 10px;
+      background: #f7f9fd;
+      color: #5e687b;
+      font-size: .8rem;
+      line-height: 1.55;
+    }
+
+    .privacy-note strong { color: #39445a; }
+    .privacy-icon { flex: 0 0 auto; color: var(--success); }
+    .actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 22px; }
+
+    .btn {
+      min-height: 46px;
+      padding: 10px 18px;
+      border: 1px solid transparent;
+      border-radius: 10px;
+      font-weight: 750;
+      transition: transform .16s ease, background .16s ease, box-shadow .16s ease;
+    }
+
+    .btn:hover:not(:disabled) { transform: translateY(-1px); }
+    .btn:disabled { cursor: wait; opacity: .68; }
+    .btn-secondary { border-color: #dce1eb; background: white; color: #515a6d; }
+    .btn-secondary:hover:not(:disabled) { background: #f7f8fb; }
+    .btn-primary {
+      background: linear-gradient(135deg, #7669ef, #5b4cda);
+      color: white;
+      box-shadow: 0 7px 16px rgb(103 88 232 / 22%);
+    }
+
+    .btn-primary:hover:not(:disabled) { background: linear-gradient(135deg, #685be0, #5143ce); }
+    .btn:focus-visible { outline: 3px solid rgb(103 88 232 / 34%); outline-offset: 2px; }
+
+    .result {
+      display: none;
+      margin-top: 22px;
+      padding: 20px;
+      border: 1px solid #d9d6fb;
+      border-radius: 14px;
+      background: linear-gradient(130deg, #f8f7ff, #fff);
+    }
+
+    .result.visible { display: block; }
+    .result-top { display: flex; align-items: center; gap: 17px; }
+    .score-ring {
+      display: grid;
+      width: 78px;
+      height: 78px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 6px solid #dedbff;
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      color: var(--accent-dark);
+      font-size: 1rem;
+      font-weight: 850;
+    }
+
+    .result h3 { margin: 0 0 4px; font-size: 1.03rem; }
+    .result p { margin: 0; color: var(--muted); font-size: .86rem; line-height: 1.55; }
+    .result small { display: block; margin-top: 12px; color: #778094; font-size: .76rem; line-height: 1.5; }
+    .status { min-height: 1.4em; margin: 15px 0 0; color: var(--danger); font-size: .87rem; font-weight: 650; }
+    .status:empty { display: none; }
+
+    footer {
+      padding: 0 20px 28px;
+      color: #8991a1;
+      font-size: .78rem;
+      text-align: center;
+    }
+
+    @media (max-width: 650px) {
+      .topbar { width: min(100% - 28px, 1000px); padding: 17px 0; }
+      .topbar-note { font-size: .78rem; }
+      main { width: min(100% - 24px, 1000px); margin: 17px auto 35px; }
+      .intro { margin-bottom: 21px; }
+      .intro p { font-size: .94rem; }
+      .card-heading { padding: 20px 19px 17px; }
+      .form-body { padding: 22px 19px; }
+      .account-grid, .photo-grid { grid-template-columns: 1fr; }
+      .upload-card { min-height: 215px; }
+      .actions { flex-direction: column-reverse; }
+      .actions .btn { width: 100%; }
+      .result-top { align-items: flex-start; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="FaceMatch home">
+      <span class="brand-mark" aria-hidden="true">✦</span>
+      FaceMatch
+    </a>
+    <div class="topbar-note" id="auth-nav">
+      <span id="auth-prompt">Already registered?</span>
+      <button class="auth-link" id="show-login" type="button">Log in</button>
+    </div>
+    <div class="topbar-note" id="step-label" hidden><strong>2</strong> / 2 &nbsp; Face comparison</div>
+  </header>
+
+  <main>
+    <section class="screen" id="registration-screen">
+      <section class="intro" aria-labelledby="registration-title">
+        <span class="eyebrow">Step 1 of 2 · Create account</span>
+        <h1 id="registration-title">Create your account</h1>
+        <p>Enter your details first. You will upload and compare photos on the next page.</p>
+      </section>
+
+      <section class="card" id="create-account">
+        <div class="card-heading">
+          <h2>Registration details</h2>
+          <p>Fill in your account information to continue.</p>
+        </div>
+        <form class="form-body" id="registration-form">
+          <div class="account-grid">
+            <div class="field">
+              <label for="full-name">Full name</label>
+              <input id="full-name" name="fullName" type="text" autocomplete="name" placeholder="e.g. Alex Morgan" required>
+            </div>
+            <div class="field">
+              <label for="email">Email address</label>
+              <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            </div>
+            <div class="field">
+              <label for="password">Password</label>
+              <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" placeholder="At least 8 characters" required>
+            </div>
+            <div class="field">
+              <label for="confirm-password">Confirm password</label>
+              <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" placeholder="Enter your password again" required>
+            </div>
+          </div>
+          <p class="status" id="registration-status" role="status" aria-live="polite"></p>
+          <div class="actions">
+            <button class="btn btn-secondary" type="reset">Clear form</button>
+            <button class="btn btn-primary" type="submit">Register <span aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </section>
+    </section>
+
+    <section class="screen" id="login-screen" hidden>
+      <section class="intro" aria-labelledby="login-title">
+        <span class="eyebrow">Welcome back</span>
+        <h1 id="login-title">Log in to FaceMatch</h1>
+        <p>Use the email and password you registered with.</p>
+      </section>
+
+      <section class="card">
+        <div class="card-heading">
+          <h2>Account login</h2>
+          <p>Your account is checked by the local FaceMatch backend.</p>
+        </div>
+        <form class="form-body" id="login-form">
+          <div class="login-field-stack">
+            <div class="field">
+              <label for="login-email">Email address</label>
+              <input id="login-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+            </div>
+            <div class="field">
+              <label for="login-password">Password</label>
+              <input id="login-password" name="password" type="password" autocomplete="current-password" maxlength="128" placeholder="Your password" required>
+            </div>
+          </div>
+          <p class="status" id="login-status" role="status" aria-live="polite"></p>
+          <div class="actions">
+            <button class="btn btn-secondary" id="show-register" type="button">← Create account</button>
+            <button class="btn btn-primary" id="login-submit" type="submit">Log in <span aria-hidden="true">→</span></button>
+          </div>
+        </form>
+      </section>
+    </section>
+
+    <section class="screen" id="comparison-screen" hidden>
+      <section class="intro" aria-labelledby="comparison-title">
+        <span class="eyebrow">Step 2 of 2 · Face comparison</span>
+        <h1 id="comparison-title" tabindex="-1">Compare two photos</h1>
+        <p>Upload one face in each photo to get an AI similarity estimate.</p>
+      </section>
+
+      <section class="card">
+        <div class="card-heading">
+          <h2>Upload photos</h2>
+          <p>Choose clear, front-facing photos with only one visible face in each.</p>
+        </div>
+        <form class="form-body" id="comparison-form">
+          <div class="photo-grid">
+            <div class="upload-card" id="photo-one-card">
+              <input id="photo-one" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Choose your photo" required>
+              <img class="preview" id="preview-one" alt="Preview of your photo">
+              <span class="upload-icon" aria-hidden="true">↑</span>
+              <span class="upload-title" id="title-one">Upload first photo</span>
+              <span class="upload-hint" id="hint-one">JPG, PNG, or WebP · Max 100 MB</span>
+              <span class="file-name" id="name-one"></span>
+              <div class="upload-actions">
+                <button class="btn btn-secondary gallery-button" type="button" data-input="photo-one">Choose from gallery</button>
+                <button class="btn btn-secondary camera-button" type="button" data-slot="0">Use camera</button>
+              </div>
+            </div>
+            <div class="upload-card" id="photo-two-card">
+              <input id="photo-two" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Choose the second photo" required>
+              <img class="preview" id="preview-two" alt="Preview of second photo">
+              <span class="upload-icon" aria-hidden="true">↑</span>
+              <span class="upload-title" id="title-two">Upload second photo</span>
+              <span class="upload-hint" id="hint-two">JPG, PNG, or WebP · Max 100 MB</span>
+              <span class="file-name" id="name-two"></span>
+              <div class="upload-actions">
+                <button class="btn btn-secondary gallery-button" type="button" data-input="photo-two">Choose from gallery</button>
+                <button class="btn btn-secondary camera-button" type="button" data-slot="1">Use camera</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="privacy-note">
+            <span class="privacy-icon" aria-hidden="true">◆</span>
+            <span><strong>Your photos stay on this device.</strong> Face detection and comparison run in your browser; images are not sent to a server. The AI model is downloaded from a content delivery network when you compare.</span>
+          </div>
+
+          <div class="actions">
+            <button class="btn btn-secondary" id="back-button" type="button">← Back</button>
+            <button class="btn btn-primary" id="compare-button" type="submit">Compare faces <span aria-hidden="true">→</span></button>
+          </div>
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+
+          <section class="result" id="result" aria-live="polite" aria-label="Face comparison result">
+            <div class="result-top">
+              <div class="score-ring" id="score">--%</div>
+              <div>
+                <h3 id="result-title">Similarity estimate</h3>
+                <p id="result-message"></p>
+              </div>
+            </div>
+            <small>This percentage is a rough similarity indicator based on AI face descriptors, not a calibrated probability or proof of identity. Lighting, pose, image quality, and other factors can affect the result. Do not use it for important decisions.</small>
+          </section>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <footer>Demo only · Accounts are stored locally by the FaceMatch backend · Photos stay in your browser</footer>
+  <dialog class="camera-dialog" id="camera-dialog" aria-labelledby="camera-title">
+    <div class="camera-content">
+      <div class="camera-heading">
+        <div>
+          <h2 id="camera-title">Capture a photo</h2>
+          <p>Keep your face inside the guide, then capture your photo.</p>
+        </div>
+        <button class="btn camera-close" id="close-camera" type="button" aria-label="Close camera">×</button>
+      </div>
+      <div class="camera-video-wrap">
+        <video class="camera-video" id="camera-video" autoplay playsinline muted></video>
+        <span class="camera-guide" aria-hidden="true"></span>
+      </div>
+      <p class="camera-prompt" id="camera-prompt">Look straight at the camera</p>
+      <p class="camera-status" id="camera-status" role="status" aria-live="polite"></p>
+      <div class="camera-actions">
+        <button class="btn btn-secondary" id="restart-camera" type="button">Restart camera</button>
+        <button class="btn btn-primary" id="capture-photo" type="button" disabled>Capture photo</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+  <script>
+    const MODEL_URL = "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights";
+    const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
+    const registrationForm = document.getElementById("registration-form");
+    const loginForm = document.getElementById("login-form");
+    const comparisonForm = document.getElementById("comparison-form");
+    const registrationScreen = document.getElementById("registration-screen");
+    const loginScreen = document.getElementById("login-screen");
+    const comparisonScreen = document.getElementById("comparison-screen");
+    const stepLabel = document.getElementById("step-label");
+    const authNav = document.getElementById("auth-nav");
+    const compareButton = document.getElementById("compare-button");
+    const statusMessage = document.getElementById("status");
+    const registrationStatus = document.getElementById("registration-status");
+    const loginStatus = document.getElementById("login-status");
+    const registerButton = registrationForm.querySelector('button[type="submit"]');
+    const loginButton = document.getElementById("login-submit");
+    const resultPanel = document.getElementById("result");
+    const cameraDialog = document.getElementById("camera-dialog");
+    const cameraVideo = document.getElementById("camera-video");
+    const cameraStatus = document.getElementById("camera-status");
+    const captureButton = document.getElementById("capture-photo");
+    const imageInputs = [
+      { input: document.getElementById("photo-one"), card: document.getElementById("photo-one-card"), preview: document.getElementById("preview-one"), title: document.getElementById("title-one"), hint: document.getElementById("hint-one"), name: document.getElementById("name-one"), defaultTitle: "Upload your photo" },
+      { input: document.getElementById("photo-two"), card: document.getElementById("photo-two-card"), preview: document.getElementById("preview-two"), title: document.getElementById("title-two"), hint: document.getElementById("hint-two"), name: document.getElementById("name-two"), defaultTitle: "Upload comparison photo" }
+    ];
+    let modelsReady;
+    let cameraStream;
+    let activeCameraInput;
+
+    function setStatus(message, isError = true) {
+      statusMessage.textContent = message;
+      statusMessage.style.color = isError ? "var(--danger)" : "var(--success)";
+    }
+
+    async function areIdenticalFiles(first, second) {
+      if (first.size !== second.size) return false;
+      const [firstBytes, secondBytes] = await Promise.all([first.arrayBuffer(), second.arrayBuffer()]);
+      const firstView = new Uint8Array(firstBytes);
+      const secondView = new Uint8Array(secondBytes);
+      return firstView.every((byte, index) => byte === secondView[index]);
+    }
+
+    function showAuthScreen(screen) {
+      registrationScreen.hidden = screen !== registrationScreen;
+      loginScreen.hidden = screen !== loginScreen;
+      comparisonScreen.hidden = true;
+      authNav.hidden = false;
+      stepLabel.hidden = true;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openComparison() {
+      registrationScreen.hidden = true;
+      loginScreen.hidden = true;
+      comparisonScreen.hidden = false;
+      authNav.hidden = true;
+      stepLabel.hidden = false;
+      document.getElementById("comparison-title").focus();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    async function sendAuthRequest(endpoint, details) {
+      let response;
+      try {
+        response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(details)
+        });
+      } catch {
+        throw new Error("Cannot reach the FaceMatch backend. Start the app with FaceMatch-start.bat and try again.");
+      }
+      let result;
+      try {
+        result = await response.json();
+      } catch {
+        throw new Error("The FaceMatch backend returned an invalid response.");
+      }
+      if (!response.ok) throw new Error(result.error || "The request could not be completed.");
+      return result;
+    }
+
+    document.getElementById("show-login").addEventListener("click", () => {
+      loginStatus.textContent = "";
+      showAuthScreen(loginScreen);
+      document.getElementById("login-email").focus();
+    });
+
+    document.getElementById("show-register").addEventListener("click", () => {
+      registrationStatus.textContent = "";
+      showAuthScreen(registrationScreen);
+      document.getElementById("full-name").focus();
+    });
+
+    registrationForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      registrationStatus.textContent = "";
+      if (document.getElementById("password").value !== document.getElementById("confirm-password").value) {
+        registrationStatus.textContent = "The passwords do not match.";
+        document.getElementById("confirm-password").focus();
+        return;
+      }
+      registerButton.disabled = true;
+      registerButton.textContent = "Creating account…";
+      try {
+        const account = await sendAuthRequest("/api/register", {
+          fullName: document.getElementById("full-name").value.trim(),
+          email: document.getElementById("email").value.trim(),
+          password: document.getElementById("password").value
+        });
+        document.getElementById("login-email").value = account.email;
+        openComparison();
+      } catch (error) {
+        registrationStatus.textContent = error.message || "Registration failed. Please try again.";
+      } finally {
+        registerButton.disabled = false;
+        registerButton.innerHTML = 'Register <span aria-hidden="true">→</span>';
+      }
+    });
+
+    loginForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      loginStatus.textContent = "";
+      loginButton.disabled = true;
+      loginButton.textContent = "Signing in…";
+      try {
+        const account = await sendAuthRequest("/api/login", {
+          email: document.getElementById("login-email").value.trim(),
+          password: document.getElementById("login-password").value
+        });
+        document.getElementById("full-name").value = account.fullName;
+        openComparison();
+      } catch (error) {
+        loginStatus.textContent = error.message || "Login failed. Check your email and password.";
+      } finally {
+        loginButton.disabled = false;
+        loginButton.innerHTML = 'Log in <span aria-hidden="true">→</span>';
+      }
+    });
+
+    registrationForm.addEventListener("reset", () => {
+      registrationStatus.textContent = "";
+    });
+
+    document.getElementById("back-button").addEventListener("click", () => {
+      showAuthScreen(registrationScreen);
+    });
+
+    function loadModels() {
+      if (modelsReady) return modelsReady;
+      if (!window.faceapi) {
+        return Promise.reject(new Error("The face AI library could not load. Check your internet connection and try again."));
+      }
+      modelsReady = Promise.all([
+        faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
+        faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
+        faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL)
+      ]).catch((error) => {
+        modelsReady = undefined;
+        throw new Error("Could not load the face AI models. Check your internet connection and try again.", { cause: error });
+      });
+      return modelsReady;
+    }
+
+    function readFaceDescriptor(file) {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        const imageUrl = URL.createObjectURL(file);
+        image.onload = async () => {
+          try {
+            const detections = await faceapi
+              .detectAllFaces(image, new faceapi.TinyFaceDetectorOptions())
+              .withFaceLandmarks()
+              .withFaceDescriptors();
+            if (detections.length === 0) {
+              throw new Error("No face was detected. Use a clear, front-facing photo.");
+            }
+            if (detections.length > 1) {
+              throw new Error("More than one face was detected. Use a photo with only one visible face.");
+            }
+            resolve(detections[0].descriptor);
+          } catch (error) {
+            reject(error);
+          } finally {
+            URL.revokeObjectURL(imageUrl);
+          }
+        };
+        image.onerror = () => {
+          URL.revokeObjectURL(imageUrl);
+          reject(new Error("One of the selected files could not be read as an image."));
+        };
+        image.src = imageUrl;
+      });
+    }
+
+    imageInputs.forEach(({ input, card, preview, title, hint, name, defaultTitle }) => {
+      input.addEventListener("change", () => {
+        const file = input.files && input.files[0];
+        resultPanel.classList.remove("visible");
+        if (!file) {
+          card.classList.remove("has-image");
+          if (preview.src.startsWith("blob:")) URL.revokeObjectURL(preview.src);
+          preview.removeAttribute("src");
+          title.textContent = defaultTitle;
+          hint.textContent = "JPG, PNG, or WebP · Max 100 MB";
+          name.textContent = "";
+          return;
+        }
+        if (!["image/jpeg", "image/png", "image/webp"].includes(file.type) || file.size > MAX_IMAGE_SIZE) {
+          input.value = "";
+          card.classList.remove("has-image");
+          if (preview.src.startsWith("blob:")) URL.revokeObjectURL(preview.src);
+          preview.removeAttribute("src");
+          setStatus(file.size > MAX_IMAGE_SIZE ? "Each photo must be 100 MB or smaller." : "Choose a JPG, PNG, or WebP image.");
+          return;
+        }
+        card.classList.add("has-image");
+        if (preview.src.startsWith("blob:")) URL.revokeObjectURL(preview.src);
+        preview.src = URL.createObjectURL(file);
+        title.textContent = "Photo selected";
+        hint.textContent = "Choose another file to replace it";
+        name.textContent = file.name;
+        setStatus("", false);
+      });
+    });
+
+    document.querySelectorAll(".gallery-button").forEach((button) => {
+      button.addEventListener("click", () => {
+        const input = document.getElementById(button.dataset.input);
+        input.click();
+      });
+    });
+
+    function stopCamera() {
+      if (cameraStream) {
+        cameraStream.getTracks().forEach((track) => track.stop());
+        cameraStream = undefined;
+      }
+      cameraVideo.srcObject = null;
+      captureButton.disabled = true;
+    }
+
+    async function startCamera() {
+      stopCamera();
+      cameraStatus.textContent = "";
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        cameraStatus.textContent = "Camera access requires a secure page (HTTPS or localhost) and a supported browser.";
+        return;
+      }
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          audio: false,
+          video: { facingMode: "user" }
+        });
+        if (!cameraDialog.open) {
+          stream.getTracks().forEach((track) => track.stop());
+          return;
+        }
+        cameraStream = stream;
+        cameraVideo.srcObject = stream;
+        await cameraVideo.play();
+        captureButton.disabled = false;
+      } catch (error) {
+        stopCamera();
+        if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
+          cameraStatus.textContent = "Camera permission was denied. Allow camera access in your browser settings and try again.";
+        } else if (error.name === "NotFoundError" || error.name === "DevicesNotFoundError") {
+          cameraStatus.textContent = "No camera was found on this device.";
+        } else {
+          cameraStatus.textContent = "Could not start the camera. Check camera access and try again.";
+        }
+      }
+    }
+
+    document.querySelectorAll(".camera-button").forEach((button) => {
+      button.addEventListener("click", async () => {
+        activeCameraInput = imageInputs[Number(button.dataset.slot)].input;
+        cameraStatus.textContent = "";
+        cameraDialog.showModal();
+        await startCamera();
+      });
+    });
+
+    document.getElementById("close-camera").addEventListener("click", () => {
+      cameraDialog.close();
+    });
+    document.getElementById("restart-camera").addEventListener("click", startCamera);
+    cameraDialog.addEventListener("close", stopCamera);
+
+    captureButton.addEventListener("click", () => {
+      if (!activeCameraInput || !cameraVideo.videoWidth || !cameraVideo.videoHeight) {
+        cameraStatus.textContent = "Wait for the camera preview before capturing a photo.";
+        return;
+      }
+
+      const canvas = document.createElement("canvas");
+      canvas.width = cameraVideo.videoWidth;
+      canvas.height = cameraVideo.videoHeight;
+      canvas.getContext("2d").drawImage(cameraVideo, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob((blob) => {
+        if (!blob) {
+          cameraStatus.textContent = "Could not capture the photo. Please try again.";
+          return;
+        }
+
+        const file = new File([blob], "camera-photo.jpg", { type: "image/jpeg" });
+        const transfer = new DataTransfer();
+        transfer.items.add(file);
+        activeCameraInput.files = transfer.files;
+        activeCameraInput.dispatchEvent(new Event("change", { bubbles: true }));
+        cameraDialog.close();
+      }, "image/jpeg", 0.92);
+    });
+
+    comparisonForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      resultPanel.classList.remove("visible");
+      setStatus("", false);
+
+      if (imageInputs.some(({ input }) => !input.files || !input.files[0])) {
+        setStatus("Choose both photos before comparing.");
+        return;
+      }
+
+      compareButton.disabled = true;
+      compareButton.textContent = "Loading face AI…";
+      try {
+        const [firstFile, secondFile] = imageInputs.map(({ input }) => input.files[0]);
+        if (await areIdenticalFiles(firstFile, secondFile)) {
+          document.getElementById("score").textContent = "100%";
+          document.getElementById("result-title").textContent = "Exact same image";
+          document.getElementById("result-message").textContent = "Both uploads contain identical file data. This does not verify a person's identity.";
+          resultPanel.classList.add("visible");
+          setStatus("Exact same image file detected.", false);
+          return;
+        }
+
+        await loadModels();
+        compareButton.textContent = "Analyzing photos…";
+        const [firstDescriptor, secondDescriptor] = await Promise.all(
+          imageInputs.map(({ input }) => readFaceDescriptor(input.files[0]))
+        );
+        const distance = faceapi.euclideanDistance(firstDescriptor, secondDescriptor);
+        const similarity = Math.round(Math.max(0, Math.min(100, (0.6 - distance) / 0.6 * 100)));
+        document.getElementById("score").textContent = similarity + "%";
+        document.getElementById("result-title").textContent = distance < 0.6 ? "Faces appear more similar" : "Faces appear less similar";
+        document.getElementById("result-message").textContent = "Estimated descriptor similarity: " + similarity + "%.";
+        resultPanel.classList.add("visible");
+        setStatus("Comparison complete. Your photos were processed in this browser.", false);
+      } catch (error) {
+        setStatus(error.message || "Face comparison failed. Please try again.");
+      } finally {
+        compareButton.disabled = false;
+        compareButton.innerHTML = 'Compare faces <span aria-hidden="true">→</span>';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+[
+  {
+    "fullName": "lucky",
+    "email": "kumawatlucky@gmail.com",
+    "salt": "6e4868e93560d65ded5fb3031853aae1",
+    "passwordHash": "12d8eb28fd59a79a4a5cbce85ca40dde7ca26f7736b3949f772676f04b1685dfd56c6e0c4da61aa32a4a89ae6e1a21435e261de0f999321b28bad72374558473",
+    "createdAt": "2026-10-22T16:00:43.063Z"
+  }
+]
