@@ -69,7 +69,6 @@
     .topbar-note { color: var(--muted); font-size: .9rem; }
     .topbar-note a { color: var(--accent-dark); font-weight: 700; text-decoration: none; }
     .topbar-note strong { color: var(--ink); }
-    .auth-link { padding: 0; border: 0; background: none; color: var(--accent-dark); font-weight: 750; text-decoration: underline; text-underline-offset: 3px; }
     .screen[hidden] { display: none; }
 
     main {
@@ -126,7 +125,6 @@
     }
 
     .field { display: flex; min-width: 0; flex-direction: column; gap: 7px; }
-    .login-field-stack { display: grid; gap: 17px; }
     .field label { font-size: .87rem; font-weight: 700; }
     .field input {
       width: 100%;
@@ -141,6 +139,11 @@
     }
 
     .field input::placeholder { color: #a1a8b6; }
+    .password-wrap { display: flex; gap: 8px; }
+    .password-wrap input { min-width: 0; flex: 1; }
+    .password-wrap .btn { flex: 0 0 auto; }
+    .login-switch { margin: 18px 30px 24px; color: var(--muted); font-size: .9rem; text-align: center; }
+    .text-button { padding: 0; border: 0; background: transparent; color: var(--accent-dark); font: inherit; font-weight: 750; text-decoration: underline; }
     .field input:focus, .upload-card:focus-within {
       border-color: #887cf0;
       box-shadow: 0 0 0 4px rgb(103 88 232 / 11%);
@@ -345,12 +348,122 @@
       .intro p { font-size: .94rem; }
       .card-heading { padding: 20px 19px 17px; }
       .form-body { padding: 22px 19px; }
+      .login-switch { margin: 16px 19px 21px; }
       .account-grid, .photo-grid { grid-template-columns: 1fr; }
       .upload-card { min-height: 215px; }
       .actions { flex-direction: column-reverse; }
       .actions .btn { width: 100%; }
       .result-top { align-items: flex-start; }
     }
+
+    body {
+      color: #f5f6ff;
+      background:
+        radial-gradient(ellipse at 12% 18%, rgb(111 91 255 / 28%), transparent 30rem),
+        radial-gradient(ellipse at 88% 78%, rgb(34 211 238 / 17%), transparent 28rem),
+        linear-gradient(135deg, #101329 0%, #171a39 52%, #10182e 100%);
+      background-attachment: fixed;
+    }
+
+    .topbar-note { color: #bdc2db; }
+    .topbar-note strong { color: #fff; }
+    .topbar-note a { color: #c1b9ff; }
+    .intro h1 { color: #f8f8ff; text-shadow: 0 5px 24px rgb(143 128 255 / 28%); }
+    .intro p { color: #c0c5dc; }
+
+    .eyebrow {
+      padding: 8px 13px;
+      border: 1px solid rgb(187 178 255 / 24%);
+      border-radius: 999px;
+      background: rgb(131 115 255 / 12%);
+      color: #c6beff;
+      box-shadow: 0 8px 24px rgb(77 65 175 / 20%);
+    }
+
+    .eyebrow::before { background: #8ff5e3; box-shadow: 0 0 12px #8ff5e3; }
+    .brand { color: #f8f8ff; }
+    .brand-mark {
+      background: linear-gradient(145deg, #a69bff, #6253df 58%, #4333aa);
+      box-shadow: 0 8px 0 #302879, 0 15px 28px rgb(92 76 220 / 42%);
+      transform: translateY(-3px);
+    }
+
+    main { perspective: 1400px; }
+    #registration-screen .card {
+      max-width: 790px;
+      margin: 0 auto;
+      border: 1px solid rgb(255 255 255 / 75%);
+      border-radius: 24px;
+      background: linear-gradient(145deg, #fff 0%, #f7f7ff 62%, #efefff 100%);
+      box-shadow:
+        0 2px 0 rgb(255 255 255 / 90%) inset,
+        0 5px 0 #c6c5e1,
+        0 12px 0 #8584ad,
+        0 35px 75px rgb(0 0 0 / 42%),
+        0 0 65px rgb(115 99 255 / 18%);
+      transform: rotateX(1.2deg) rotateY(-.5deg);
+      transform-style: preserve-3d;
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+
+    #registration-screen .card:hover {
+      box-shadow:
+        0 2px 0 rgb(255 255 255 / 90%) inset,
+        0 5px 0 #c6c5e1,
+        0 12px 0 #8584ad,
+        0 44px 85px rgb(0 0 0 / 48%),
+        0 0 75px rgb(115 99 255 / 24%);
+      transform: rotateX(0) rotateY(0) translateY(-4px);
+    }
+
+    #registration-screen .card-heading {
+      border-bottom-color: #e6e5f4;
+      background: linear-gradient(110deg, #fff, #f1f0ff);
+    }
+
+    #registration-screen .card-heading h2 { color: #24213f; }
+    #registration-screen .card-heading p { color: #77758e; }
+    #registration-screen .field label { color: #302d4d; }
+
+    #registration-screen .field input {
+      border-color: #deddee;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #fff, #fafaff);
+      box-shadow: 0 3px 0 #e7e6f2, 0 7px 15px rgb(47 43 90 / 5%);
+    }
+
+    #registration-screen .field input:focus {
+      border-color: #8b7df1;
+      box-shadow: 0 0 0 4px rgb(103 88 232 / 12%), 0 5px 0 #d9d4fa;
+      transform: translateY(-1px);
+    }
+
+    #registration-screen .btn-primary {
+      border-color: #7164e8;
+      background: linear-gradient(145deg, #9488ff, #6454e2 65%, #5142ca);
+      box-shadow: 0 4px 0 #3f329e, 0 10px 20px rgb(84 67 204 / 30%);
+    }
+
+    #registration-screen .btn-primary:hover:not(:disabled) {
+      background: linear-gradient(145deg, #a195ff, #6e5fe9 65%, #5848d3);
+      box-shadow: 0 5px 0 #3f329e, 0 13px 24px rgb(84 67 204 / 36%);
+      transform: translateY(-2px);
+    }
+
+    #registration-screen .btn-primary:active:not(:disabled) {
+      box-shadow: 0 1px 0 #3f329e, 0 4px 9px rgb(84 67 204 / 25%);
+      transform: translateY(3px);
+    }
+
+    #registration-screen .btn-secondary {
+      border-color: #deddee;
+      background: linear-gradient(180deg, #fff, #f6f5fc);
+      box-shadow: 0 3px 0 #e1e0ec;
+    }
+
+    #registration-screen .login-switch { color: #77758e; }
+    #registration-screen .text-button { color: #5546c5; }
+    footer { color: #a6abc2; }
 
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
@@ -363,11 +476,7 @@
       <span class="brand-mark" aria-hidden="true">✦</span>
       FaceMatch
     </a>
-    <div class="topbar-note" id="auth-nav">
-      <span id="auth-prompt">Already registered?</span>
-      <button class="auth-link" id="show-login" type="button">Log in</button>
-    </div>
-    <div class="topbar-note" id="step-label" hidden><strong>2</strong> / 2 &nbsp; Face comparison</div>
+    <div class="topbar-note" id="step-label"><strong>1</strong> / 2 &nbsp; Registration</div>
   </header>
 
   <main>
@@ -375,7 +484,7 @@
       <section class="intro" aria-labelledby="registration-title">
         <span class="eyebrow">Step 1 of 2 · Create account</span>
         <h1 id="registration-title">Create your account</h1>
-        <p>Enter your details first. You will upload and compare photos on the next page.</p>
+        <p>Create one account on this device. You can log in again any time.</p>
       </section>
 
       <section class="card" id="create-account">
@@ -395,65 +504,52 @@
             </div>
             <div class="field">
               <label for="password">Password</label>
-              <input id="password" name="password" type="password" autocomplete="new-password" minlength="8" maxlength="128" placeholder="At least 8 characters" required>
+              <div class="password-wrap"><input id="password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters" required><button class="btn btn-secondary toggle-password" type="button" data-password="password" aria-label="Show password">👁</button></div>
             </div>
             <div class="field">
               <label for="confirm-password">Confirm password</label>
-              <input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" placeholder="Enter your password again" required>
+              <div class="password-wrap"><input id="confirm-password" name="confirmPassword" type="password" autocomplete="new-password" minlength="8" placeholder="Enter your password again" required><button class="btn btn-secondary toggle-password" type="button" data-password="confirm-password" aria-label="Show password">👁</button></div>
             </div>
           </div>
           <p class="status" id="registration-status" role="status" aria-live="polite"></p>
           <div class="actions">
             <button class="btn btn-secondary" type="reset">Clear form</button>
-            <button class="btn btn-primary" type="submit">Register <span aria-hidden="true">→</span></button>
+            <button class="btn btn-primary" type="submit">Create account <span aria-hidden="true">→</span></button>
           </div>
         </form>
+        <p class="login-switch">Already registered? <button class="text-button" id="show-login" type="button">Log in</button></p>
       </section>
     </section>
-
     <section class="screen" id="login-screen" hidden>
       <section class="intro" aria-labelledby="login-title">
         <span class="eyebrow">Welcome back</span>
-        <h1 id="login-title">Log in to FaceMatch</h1>
-        <p>Use the email and password you registered with.</p>
+        <h1 id="login-title" tabindex="-1">Log in</h1>
+        <p>Use the account registered in this browser.</p>
       </section>
-
       <section class="card">
-        <div class="card-heading">
-          <h2>Account login</h2>
-          <p>Your account is checked by the local FaceMatch backend.</p>
-        </div>
+        <div class="card-heading"><h2>Your account</h2><p>Your password is checked locally on this device.</p></div>
         <form class="form-body" id="login-form">
-          <div class="login-field-stack">
-            <div class="field">
-              <label for="login-email">Email address</label>
-              <input id="login-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-            </div>
-            <div class="field">
-              <label for="login-password">Password</label>
-              <input id="login-password" name="password" type="password" autocomplete="current-password" maxlength="128" placeholder="Your password" required>
-            </div>
+          <div class="account-grid">
+            <div class="field"><label for="login-email">Email address</label><input id="login-email" name="username" type="email" autocomplete="username" required></div>
+            <div class="field"><label for="login-password">Password</label><div class="password-wrap"><input id="login-password" name="password" type="password" autocomplete="current-password" required><button class="btn btn-secondary toggle-password" type="button" data-password="login-password" aria-label="Show password">👁</button></div></div>
           </div>
           <p class="status" id="login-status" role="status" aria-live="polite"></p>
-          <div class="actions">
-            <button class="btn btn-secondary" id="show-register" type="button">← Create account</button>
-            <button class="btn btn-primary" id="login-submit" type="submit">Log in <span aria-hidden="true">→</span></button>
-          </div>
+          <div class="actions"><button class="btn btn-primary" type="submit">Log in</button></div>
         </form>
+        <p class="login-switch">New here? <button class="text-button" id="show-register" type="button">Create an account</button></p>
       </section>
     </section>
-
     <section class="screen" id="comparison-screen" hidden>
       <section class="intro" aria-labelledby="comparison-title">
         <span class="eyebrow">Step 2 of 2 · Face comparison</span>
-        <h1 id="comparison-title" tabindex="-1">Compare two photos</h1>
-        <p>Upload one face in each photo to get an AI similarity estimate.</p>
+        <h1 id="comparison-title" tabindex="-1">Live face comparison</h1>
+        <p>Capture faces with your camera or choose photos from your gallery.</p>
       </section>
 
       <section class="card">
         <div class="card-heading">
-          <h2>Upload photos</h2>
-          <p>Choose clear, front-facing photos with only one visible face in each.</p>
+          <h2>Camera or gallery</h2>
+          <p>Use clear photos with exactly one face in each image.</p>
         </div>
         <form class="form-body" id="comparison-form">
           <div class="photo-grid">
@@ -461,31 +557,31 @@
               <input id="photo-one" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Choose your photo" required>
               <img class="preview" id="preview-one" alt="Preview of your photo">
               <span class="upload-icon" aria-hidden="true">↑</span>
-              <span class="upload-title" id="title-one">Upload first photo</span>
-              <span class="upload-hint" id="hint-one">JPG, PNG, or WebP · Max 100 MB</span>
+              <span class="upload-title" id="title-one">First live face</span>
+              <span class="upload-hint" id="hint-one">Use camera or gallery</span>
               <span class="file-name" id="name-one"></span>
               <div class="upload-actions">
-                <button class="btn btn-secondary gallery-button" type="button" data-input="photo-one">Choose from gallery</button>
                 <button class="btn btn-secondary camera-button" type="button" data-slot="0">Use camera</button>
+                <button class="btn btn-secondary gallery-button" type="button" data-input="photo-one">Choose from gallery</button>
               </div>
             </div>
             <div class="upload-card" id="photo-two-card">
               <input id="photo-two" type="file" accept="image/jpeg,image/png,image/webp" aria-label="Choose the second photo" required>
               <img class="preview" id="preview-two" alt="Preview of second photo">
               <span class="upload-icon" aria-hidden="true">↑</span>
-              <span class="upload-title" id="title-two">Upload second photo</span>
-              <span class="upload-hint" id="hint-two">JPG, PNG, or WebP · Max 100 MB</span>
+              <span class="upload-title" id="title-two">Second live face</span>
+              <span class="upload-hint" id="hint-two">Use camera or gallery</span>
               <span class="file-name" id="name-two"></span>
               <div class="upload-actions">
-                <button class="btn btn-secondary gallery-button" type="button" data-input="photo-two">Choose from gallery</button>
                 <button class="btn btn-secondary camera-button" type="button" data-slot="1">Use camera</button>
+                <button class="btn btn-secondary gallery-button" type="button" data-input="photo-two">Choose from gallery</button>
               </div>
             </div>
           </div>
 
           <div class="privacy-note">
             <span class="privacy-icon" aria-hidden="true">◆</span>
-            <span><strong>Your photos stay on this device.</strong> Face detection and comparison run in your browser; images are not sent to a server. The AI model is downloaded from a content delivery network when you compare.</span>
+            <span><strong>Camera frames stay on this device.</strong> Gallery images and camera captures are checked for one face and processed in this browser.</span>
           </div>
 
           <div class="actions">
@@ -509,7 +605,7 @@
     </section>
   </main>
 
-  <footer>Demo only · Accounts are stored locally by the FaceMatch backend · Photos stay in your browser</footer>
+  <footer>Demo only · Face comparison runs locally in your browser · Registration details are not saved</footer>
   <dialog class="camera-dialog" id="camera-dialog" aria-labelledby="camera-title">
     <div class="camera-content">
       <div class="camera-heading">
@@ -535,21 +631,15 @@
   <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
   <script>
     const MODEL_URL = "https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@master/weights";
-    const MAX_IMAGE_SIZE = 10 * 1024 * 1024;
+    const MAX_IMAGE_SIZE = 100 * 1024 * 1024;
     const registrationForm = document.getElementById("registration-form");
-    const loginForm = document.getElementById("login-form");
     const comparisonForm = document.getElementById("comparison-form");
     const registrationScreen = document.getElementById("registration-screen");
-    const loginScreen = document.getElementById("login-screen");
     const comparisonScreen = document.getElementById("comparison-screen");
     const stepLabel = document.getElementById("step-label");
-    const authNav = document.getElementById("auth-nav");
     const compareButton = document.getElementById("compare-button");
     const statusMessage = document.getElementById("status");
     const registrationStatus = document.getElementById("registration-status");
-    const loginStatus = document.getElementById("login-status");
-    const registerButton = registrationForm.querySelector('button[type="submit"]');
-    const loginButton = document.getElementById("login-submit");
     const resultPanel = document.getElementById("result");
     const cameraDialog = document.getElementById("camera-dialog");
     const cameraVideo = document.getElementById("camera-video");
@@ -562,6 +652,9 @@
     let modelsReady;
     let cameraStream;
     let activeCameraInput;
+    let cameraDetectionInterval;
+    let cameraDetectionBusy = false;
+    let cameraFaceCount = 0;
 
     function setStatus(message, isError = true) {
       statusMessage.textContent = message;
@@ -570,116 +663,118 @@
 
     async function areIdenticalFiles(first, second) {
       if (first.size !== second.size) return false;
-      const [firstBytes, secondBytes] = await Promise.all([first.arrayBuffer(), second.arrayBuffer()]);
-      const firstView = new Uint8Array(firstBytes);
-      const secondView = new Uint8Array(secondBytes);
-      return firstView.every((byte, index) => byte === secondView[index]);
+      const chunkSize = 1024 * 1024;
+      for (let offset = 0; offset < first.size; offset += chunkSize) {
+        const [firstChunk, secondChunk] = await Promise.all([
+          first.slice(offset, offset + chunkSize).arrayBuffer(),
+          second.slice(offset, offset + chunkSize).arrayBuffer()
+        ]);
+        const firstView = new Uint8Array(firstChunk);
+        const secondView = new Uint8Array(secondChunk);
+        if (firstView.some((byte, index) => byte !== secondView[index])) return false;
+      }
+      return true;
     }
 
-    function showAuthScreen(screen) {
-      registrationScreen.hidden = screen !== registrationScreen;
-      loginScreen.hidden = screen !== loginScreen;
-      comparisonScreen.hidden = true;
-      authNav.hidden = false;
-      stepLabel.hidden = true;
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    const loginForm = document.getElementById("login-form");
+    const loginScreen = document.getElementById("login-screen");
+    const loginStatus = document.getElementById("login-status");
+    const ACCOUNT_KEY = "facematch.account.v1";
 
-    function openComparison() {
+    function goToComparison() {
       registrationScreen.hidden = true;
       loginScreen.hidden = true;
       comparisonScreen.hidden = false;
-      authNav.hidden = true;
-      stepLabel.hidden = false;
+      stepLabel.innerHTML = "<strong>2</strong> / 2 &nbsp; Face comparison";
       document.getElementById("comparison-title").focus();
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    async function sendAuthRequest(endpoint, details) {
-      let response;
-      try {
-        response = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(details)
-        });
-      } catch {
-        throw new Error("Cannot reach the FaceMatch backend. Start the app with FaceMatch-start.bat and try again.");
-      }
-      let result;
-      try {
-        result = await response.json();
-      } catch {
-        throw new Error("The FaceMatch backend returned an invalid response.");
-      }
-      if (!response.ok) throw new Error(result.error || "The request could not be completed.");
-      return result;
+    async function hashPassword(password, saltBytes) {
+      const key = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveBits"]);
+      const bits = await crypto.subtle.deriveBits({ name: "PBKDF2", hash: "SHA-256", salt: saltBytes, iterations: 210000 }, key, 256);
+      return Array.from(new Uint8Array(bits), byte => byte.toString(16).padStart(2, "0")).join("");
     }
 
-    document.getElementById("show-login").addEventListener("click", () => {
-      loginStatus.textContent = "";
-      showAuthScreen(loginScreen);
-      document.getElementById("login-email").focus();
-    });
-
-    document.getElementById("show-register").addEventListener("click", () => {
-      registrationStatus.textContent = "";
-      showAuthScreen(registrationScreen);
-      document.getElementById("full-name").focus();
-    });
-
-    registrationForm.addEventListener("submit", async (event) => {
+    registrationForm.addEventListener("submit", async event => {
       event.preventDefault();
       registrationStatus.textContent = "";
-      if (document.getElementById("password").value !== document.getElementById("confirm-password").value) {
+      const name = document.getElementById("full-name").value.trim();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const password = document.getElementById("password").value;
+      if (password !== document.getElementById("confirm-password").value) {
         registrationStatus.textContent = "The passwords do not match.";
         document.getElementById("confirm-password").focus();
         return;
       }
-      registerButton.disabled = true;
-      registerButton.textContent = "Creating account…";
-      try {
-        const account = await sendAuthRequest("/api/register", {
-          fullName: document.getElementById("full-name").value.trim(),
-          email: document.getElementById("email").value.trim(),
-          password: document.getElementById("password").value
-        });
-        document.getElementById("login-email").value = account.email;
-        openComparison();
-      } catch (error) {
-        registrationStatus.textContent = error.message || "Registration failed. Please try again.";
-      } finally {
-        registerButton.disabled = false;
-        registerButton.innerHTML = 'Register <span aria-hidden="true">→</span>';
+      if (localStorage.getItem(ACCOUNT_KEY)) {
+        registrationStatus.textContent = "An account is already registered in this browser. Please log in.";
+        document.getElementById("show-login").focus();
+        return;
       }
+      try {
+        const salt = crypto.getRandomValues(new Uint8Array(16));
+        const hash = await hashPassword(password, salt);
+        localStorage.setItem(ACCOUNT_KEY, JSON.stringify({ name, email, salt: btoa(String.fromCharCode(...salt)), hash }));
+        if (window.confirm("Would you like your browser to save this password? Choose Yes and accept your browser's password manager prompt if it appears.")) {
+          try {
+            if (window.PasswordCredential && navigator.credentials && navigator.credentials.store) {
+              await navigator.credentials.store(new PasswordCredential({ id: email, password, name }));
+            } else {
+              window.alert("This browser cannot save passwords from this page. You can still log in with your password.");
+            }
+          } catch (error) { window.alert("Your browser could not save this password. You can still log in with it."); }
+        }
+        goToComparison();
+      } catch (error) { registrationStatus.textContent = "Could not create the local account. Use localhost and try again."; }
     });
 
-    loginForm.addEventListener("submit", async (event) => {
+    loginForm.addEventListener("submit", async event => {
       event.preventDefault();
       loginStatus.textContent = "";
-      loginButton.disabled = true;
-      loginButton.textContent = "Signing in…";
       try {
-        const account = await sendAuthRequest("/api/login", {
-          email: document.getElementById("login-email").value.trim(),
-          password: document.getElementById("login-password").value
-        });
-        document.getElementById("full-name").value = account.fullName;
-        openComparison();
-      } catch (error) {
-        loginStatus.textContent = error.message || "Login failed. Check your email and password.";
-      } finally {
-        loginButton.disabled = false;
-        loginButton.innerHTML = 'Log in <span aria-hidden="true">→</span>';
-      }
+        const account = JSON.parse(localStorage.getItem(ACCOUNT_KEY) || "null");
+        const email = document.getElementById("login-email").value.trim().toLowerCase();
+        const password = document.getElementById("login-password").value;
+        if (!account) { loginStatus.textContent = "No account is registered in this browser yet."; return; }
+        const salt = Uint8Array.from(atob(account.salt), character => character.charCodeAt(0));
+        const hash = await hashPassword(password, salt);
+        if (email !== account.email || hash !== account.hash) { loginStatus.textContent = "Email or password is incorrect."; return; }
+        goToComparison();
+      } catch (error) { loginStatus.textContent = "Could not log in. Please try again."; }
     });
 
-    registrationForm.addEventListener("reset", () => {
-      registrationStatus.textContent = "";
+    document.getElementById("show-login").addEventListener("click", () => {
+      registrationScreen.hidden = true; loginScreen.hidden = false;
+      stepLabel.textContent = "Log in"; document.getElementById("login-title").focus();
     });
+    document.getElementById("show-register").addEventListener("click", () => {
+      loginScreen.hidden = true; registrationScreen.hidden = false;
+      stepLabel.innerHTML = "<strong>1</strong> / 2 &nbsp; Registration";
+      document.getElementById("registration-title").focus();
+    });
+    document.querySelectorAll(".toggle-password").forEach(button => {
+      button.addEventListener("click", () => {
+        const input = document.getElementById(button.dataset.password);
+        const show = input.type === "password";
+        input.type = show ? "text" : "password";
+        button.textContent = "👁";
+        button.setAttribute("aria-label", show ? "Hide password" : "Show password");
+      });
+    });
+    registrationForm.addEventListener("reset", () => { registrationStatus.textContent = ""; });
+    loginForm.addEventListener("reset", () => { loginStatus.textContent = ""; });
+    if (localStorage.getItem(ACCOUNT_KEY)) {
+      registrationScreen.hidden = true;
+      loginScreen.hidden = false;
+      stepLabel.textContent = "Log in";
+    }
 
     document.getElementById("back-button").addEventListener("click", () => {
-      showAuthScreen(registrationScreen);
+      comparisonScreen.hidden = true;
+      registrationScreen.hidden = false;
+      stepLabel.innerHTML = "<strong>1</strong> / 2 &nbsp; Registration";
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     function loadModels() {
@@ -738,7 +833,7 @@
           if (preview.src.startsWith("blob:")) URL.revokeObjectURL(preview.src);
           preview.removeAttribute("src");
           title.textContent = defaultTitle;
-          hint.textContent = "JPG, PNG, or WebP · Max 100 MB";
+          hint.textContent = "Use camera or gallery";
           name.textContent = "";
           return;
         }
@@ -760,11 +855,8 @@
       });
     });
 
-    document.querySelectorAll(".gallery-button").forEach((button) => {
-      button.addEventListener("click", () => {
-        const input = document.getElementById(button.dataset.input);
-        input.click();
-      });
+    document.querySelectorAll(".gallery-button").forEach(button => {
+      button.addEventListener("click", () => document.getElementById(button.dataset.input).click());
     });
 
     function stopCamera() {
@@ -772,6 +864,9 @@
         cameraStream.getTracks().forEach((track) => track.stop());
         cameraStream = undefined;
       }
+      if (cameraDetectionInterval) window.clearInterval(cameraDetectionInterval);
+      cameraDetectionInterval = undefined;
+      cameraFaceCount = 0;
       cameraVideo.srcObject = null;
       captureButton.disabled = true;
     }
@@ -785,6 +880,8 @@
       }
 
       try {
+        cameraStatus.textContent = "Loading face detector…";
+        await loadModels();
         const stream = await navigator.mediaDevices.getUserMedia({
           audio: false,
           video: { facingMode: "user" }
@@ -796,7 +893,20 @@
         cameraStream = stream;
         cameraVideo.srcObject = stream;
         await cameraVideo.play();
-        captureButton.disabled = false;
+        cameraStatus.textContent = "Looking for exactly one face…";
+        cameraDetectionInterval = window.setInterval(async () => {
+          if (cameraDetectionBusy || !cameraStream || !window.faceapi) return;
+          cameraDetectionBusy = true;
+          try {
+            const faces = await faceapi.detectAllFaces(cameraVideo, new faceapi.TinyFaceDetectorOptions());
+            cameraFaceCount = faces.length;
+            captureButton.disabled = faces.length !== 1;
+            cameraStatus.textContent = faces.length === 1 ? "One face detected. You can capture now." : faces.length === 0 ? "No face detected. Center your face in the guide." : "More than one face detected. Keep only one face in view.";
+          } catch (error) {
+            cameraFaceCount = 0; captureButton.disabled = true;
+            cameraStatus.textContent = "Face detection failed. Please restart the camera.";
+          } finally { cameraDetectionBusy = false; }
+        }, 500);
       } catch (error) {
         stopCamera();
         if (error.name === "NotAllowedError" || error.name === "PermissionDeniedError") {
@@ -825,8 +935,8 @@
     cameraDialog.addEventListener("close", stopCamera);
 
     captureButton.addEventListener("click", () => {
-      if (!activeCameraInput || !cameraVideo.videoWidth || !cameraVideo.videoHeight) {
-        cameraStatus.textContent = "Wait for the camera preview before capturing a photo.";
+      if (!activeCameraInput || !cameraVideo.videoWidth || !cameraVideo.videoHeight || cameraFaceCount !== 1) {
+        cameraStatus.textContent = "Wait until exactly one face is detected before capturing.";
         return;
       }
 
@@ -863,20 +973,19 @@
       compareButton.textContent = "Loading face AI…";
       try {
         const [firstFile, secondFile] = imageInputs.map(({ input }) => input.files[0]);
-        if (await areIdenticalFiles(firstFile, secondFile)) {
-          document.getElementById("score").textContent = "100%";
-          document.getElementById("result-title").textContent = "Exact same image";
-          document.getElementById("result-message").textContent = "Both uploads contain identical file data. This does not verify a person's identity.";
-          resultPanel.classList.add("visible");
-          setStatus("Exact same image file detected.", false);
-          return;
-        }
-
         await loadModels();
         compareButton.textContent = "Analyzing photos…";
         const [firstDescriptor, secondDescriptor] = await Promise.all(
           imageInputs.map(({ input }) => readFaceDescriptor(input.files[0]))
         );
+        if (await areIdenticalFiles(firstFile, secondFile)) {
+          document.getElementById("score").textContent = "100%";
+          document.getElementById("result-title").textContent = "Exact same image";
+          document.getElementById("result-message").textContent = "Both uploads contain the same image, and one face was detected. This does not verify a person's identity.";
+          resultPanel.classList.add("visible");
+          setStatus("Same image detected; one face was verified in it.", false);
+          return;
+        }
         const distance = faceapi.euclideanDistance(firstDescriptor, secondDescriptor);
         const similarity = Math.round(Math.max(0, Math.min(100, (0.6 - distance) / 0.6 * 100)));
         document.getElementById("score").textContent = similarity + "%";
